@@ -1,0 +1,18 @@
+<h1>Home</h1>
+<p>This is my expense tracker</p>
+<h3>Recent Expenses:</h3>
+<ul>
+  <li ng-repeat="expense in recentExpenses">
+    {{expense.notes}} for {{expense.amount | currency}} @ {{expense.payee}} on {{expense.date | date:'shortDate'}}
+  </li>
+</ul>
+
+{{data.$value}}
+<input ng-model="data.$value">
+
+
+<br>
+<h3>messages</h3>
+<input ng-model="newMessageText">
+<button ng-click="addMessage()">Add</button>
+<div ng-repeat="msg in messages">{{msg.text}}</div>
