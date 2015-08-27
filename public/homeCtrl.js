@@ -6,24 +6,16 @@ angular.module('app').controller('homeCtrl', function(
   var ref = new Firebase("https://je-expense-tracker.firebaseio.com");
 
   var auth = $firebaseAuth(ref);
-  auth.$authWithOAuthPopup("facebook").then(function(authData) {
-    console.log("logged in as:", authData.uid);
-  }).catch(function(error) {
-    console.log("Authentication failed:", error);
-  })
+  if(!auth.$getAuth()) {
+    auth.$authWithOAuthPopup("facebook").then(function(authData) {
+      console.log("logged in as:", authData.uid);
+    }).catch(function(error) {
+      console.log("Authentication failed:", error);
+    })
+  }
 
   var syncObj = $firebaseObject(ref);
   syncObj.$bindTo($scope, "data");
-
-  var msgsRef = ref.child('messages');
-  $scope.messages = $firebaseArray(msgsRef);
-
-  $scope.addMessage = function() {
-    console.log('added');
-    $scope.messages.$add({
-      text: $scope.newMessageText
-    });
-  };
 
   // $scope.recentExpenses = expenses.getLatest(10);
   $scope.recentExpenses = [
