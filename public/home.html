@@ -3,10 +3,10 @@
 <h3>Recent Expenses:</h3>
 <ul>
   <li ng-repeat="expense in recentExpenses">
-    {{expense.notes}} for {{expense.amount | currency}} @ {{expense.payee}} on {{expense.date | date:'shortDate'}}
+    {{expense.amount | currency}} for {{expense.description}} @ {{expense.payee}} on {{expense.date | date:'shortDate'}}
   </li>
 </ul>
 
-<new-expense></new-expense>
+<new-expense create-new-expense="createExpense(expenseData)" new-expense-data="newExpenseData"></new-expense>
 
 

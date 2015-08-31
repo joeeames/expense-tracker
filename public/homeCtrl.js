@@ -1,41 +1,38 @@
 angular.module('app').controller('homeCtrl', function(
-    $scope, $firebaseObject, $firebaseArray, $firebaseAuth) {
+    $scope, $firebaseObject, $firebaseArray, auth, fbRef) {
 
+  auth.authorize();
 
+  $scope.newExpenseData = {z:5}
 
-  var ref = new Firebase("https://je-expense-tracker.firebaseio.com");
+  $scope.expenses = $firebaseArray(fbRef.expenses);
 
-  var auth = $firebaseAuth(ref);
-  if(!auth.$getAuth()) {
-    auth.$authWithOAuthPopup("facebook").then(function(authData) {
-      console.log("logged in as:", authData.uid);
-    }).catch(function(error) {
-      console.log("Authentication failed:", error);
-    })
+  var query = fbRef.expenses.orderByChild("date").limitToLast(5);
+  $scope.recentExpenses = $firebaseArray(query);
+
+  $scope.createExpense = function(expenseData) {
+    $scope.expenses.$add(expenseData);
   }
 
-  var syncObj = $firebaseObject(ref);
-  syncObj.$bindTo($scope, "data");
-
   // $scope.recentExpenses = expenses.getLatest(10);
-  $scope.recentExpenses = [
-    { 
-      payee: "Target",
-      notes: "Swim Trunks",
-      amount: 14.35,
-      date: new Date('3/8/2025')
-    },
-    { 
-      payee: "Best Buy",
-      notes: "Go Pro",
-      amount: 428.33,
-      date: new Date('3/8/2025')
-    },
-    { 
-      payee: "Barnes & Noble",
-      notes: "Programming book",
-      amount: 48.22,
-      date: new Date('3/10/2025')
-    },
-  ];
+  // $scope.recentExpenses = [
+  //   { 
+  //     payee: "Target",
+  //     notes: "Swim Trunks",
+  //     amount: 14.35,
+  //     date: new Date('3/8/2025')
+  //   },
+  //   { 
+  //     payee: "Best Buy",
+  //     notes: "Go Pro",
+  //     amount: 428.33,
+  //     date: new Date('3/8/2025')
+  //   },
+  //   { 
+  //     payee: "Barnes & Noble",
+  //     notes: "Programming book",
+  //     amount: 48.22,
+  //     date: new Date('3/10/2025')
+  //   },
+  // ];
 })
