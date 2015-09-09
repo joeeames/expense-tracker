@@ -1,0 +1,9 @@
+<div>
+  <input type="text" placeholder="Date" ng-model="date">
+  <input type="text" placeholder="Payee" ng-model="payee">
+  <input type="text" placeholder="Description" ng-model="desc">
+  <input type="text" placeholder="Amount" ng-model="amount" style="width: 100px;">
+  <button class="btn btn-primary btn-sm" ng-click="create()" ng-hide="editing">Create</button>
+  <button class="btn btn-primary btn-sm" ng-click="save()" ng-show="editing">Save</button>
+  <button class="btn btn-warning btn-sm" ng-click="cancelEdit()" ng-show="editing">Cancel</button>
+</div>

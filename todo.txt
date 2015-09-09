@@ -1,0 +1,4 @@
+* enable editing user preferences
+* add categories
+* create a "new expense" page that's mobile-friendly
+* add paging/infinitescroll/"more see" button to all transactions

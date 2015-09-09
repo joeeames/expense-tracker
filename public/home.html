@@ -1,12 +1,11 @@
-<h1>Home</h1>
-<p>This is my expense tracker</p>
+<h1>Expense Tracker</h1>
 <h3>Recent Expenses:</h3>
-<ul>
-  <li ng-repeat="expense in recentExpenses">
-    {{expense.amount | currency}} for {{expense.description}} @ {{expense.payee}} on {{expense.date | date:'shortDate'}}
-  </li>
-</ul>
 
-<new-expense create-new-expense="createExpense(expenseData)" new-expense-data="newExpenseData"></new-expense>
+<expense-list data="recentExpenses" select-expense="editExpense(expense)"></expense-list>
+
+<edit-expense 
+    create-new-expense="createExpense(expenseData)" 
+    update-expense="updateExpense()"
+    edited-data="editedExpense"></edit-expense>
 
 
