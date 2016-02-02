@@ -11,17 +11,15 @@ app.run(function($rootScope, $location) {
 app.config(function($routeProvider) {
   $routeProvider
     .when('/home', {
-      templateUrl: '/home.html',
-      controller: 'homeCtrl',
+      template: '<home></home>',
       resolve: {
         "currentAuth": function(auth) {
           return auth.$requireAuth();
         }
       }
     })
-    .when('/all', {
-      templateUrl: '/expenses/allHome.html',
-      controller: 'allHomeCtrl',
+    .when('/categories', {
+      template: '<category-list></category-list>',
       resolve: {
         "currentAuth": function(auth) {
           return auth.$requireAuth();
@@ -29,10 +27,10 @@ app.config(function($routeProvider) {
       }
     })
     .when('/login', {
-      templateUrl: '/login.html',
-      controller: 'loginCtrl',
+      // have to use the snake-case attribute name, but in the component, it's camel case
+      template: '<login current-auth="$resolve.currentAuth"></login>',
       resolve: {
-        "currentAuth": function(auth) {
+        currentAuth: function(auth) {
           return auth.$waitForAuth();
         }
       }

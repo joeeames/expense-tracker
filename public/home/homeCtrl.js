@@ -1,7 +1,7 @@
 angular.module('app').controller('homeCtrl', function(
     $scope, $firebaseObject, $firebaseArray, auth, fbRef) {
 
-  var query = fbRef.expenses.orderByChild("date").limitToLast(5);
+  var query = fbRef.getExpensesRef().orderByChild("date").limitToLast(5);
   $scope.recentExpenses = $firebaseArray(query);
 
   $scope.createExpense = function(expenseData) {

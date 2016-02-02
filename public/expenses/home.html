@@ -1,0 +1,8 @@
+<h1>Expenses</h1>
+
+<expense-list data="$ctrl.expensesInOrder" select-expense="$ctrl.editExpense(expense)"></expense-list>
+
+<edit-expense 
+    create-new-expense="$ctrl.createExpense(expenseData)" 
+    update-expense="$ctrl.updateExpense()"
+    edited-data="$ctrl.editedExpense"></edit-expense>

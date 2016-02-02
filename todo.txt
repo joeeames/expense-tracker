@@ -1,4 +1,4 @@
 * enable editing user preferences
 * add categories
-* create a "new expense" page that's mobile-friendly
-* add paging/infinitescroll/"more see" button to all transactions
+* add totals that show category subtotals - use extended firebase array
+    https://www.firebase.com/docs/web/libraries/angular/guide/extending-services.html

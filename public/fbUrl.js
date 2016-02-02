@@ -1,0 +1,1 @@
+angular.module('app').value('fbUrl', "https://je-expense-tracker.firebaseio.com")

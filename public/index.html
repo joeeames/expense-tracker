@@ -12,24 +12,26 @@
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li><a href="#/">Home</a></li>
-          <li><a href="#/all">All Expenses</a></li>
+          <li><a href="#/categories">Categories</a></li>
           <li><a href="#/login">Login/Logout</a></li>
         </ul>
       </div>
     </div>
   </div>
   <ng-view></ng-view>
-  <script type="text/javascript" src="https://code.angularjs.org/1.4.4/angular.min.js"></script>
-  <script type="text/javascript" src="https://code.angularjs.org/1.4.4/angular-route.min.js"></script>
-  <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+  <script type="text/javascript" src="https://code.angularjs.org/1.5.0-rc.2/angular.min.js"></script>
+  <script type="text/javascript" src="https://code.angularjs.org/1.5.0-rc.2/angular-route.min.js"></script>
+  <script type="text/javascript" src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
   <script type="text/javascript" src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
   <script type="text/javascript" src="/app.js"></script>
-  <script type="text/javascript" src="/homeCtrl.js"></script>
-  <script type="text/javascript" src="/expenses/edit-expense.js"></script>
+  <script type="text/javascript" src="/home/homeCtrl.js"></script>
+  <script type="text/javascript" src="/expenses/editExpense.js"></script>
   <script type="text/javascript" src="/fbRef.js"></script>
-  <script type="text/javascript" src="/auth.js"></script>
-  <script type="text/javascript" src="/expenses/allHomeCtrl.js"></script>
-  <script type="text/javascript" src="/expenses/expense-list.js"></script>
-  <script type="text/javascript" src="/loginCtrl.js"></script>
+  <script type="text/javascript" src="/security/auth.js"></script>
+  <script type="text/javascript" src="/expenses/Home.js"></script>
+  <script type="text/javascript" src="/expenses/expenseList.js"></script>
+  <script type="text/javascript" src="/security/login.js"></script>
+  <script type="text/javascript" src="/fbUrl.js"></script>
+  <script type="text/javascript" src="/categories/categoryList.js"></script>
 </body>
 </html>

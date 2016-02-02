@@ -1,3 +1,4 @@
+list goes here
 <table class="table table-hover table-condensed">
   <thead>
     <th width="23%">Date</th>
@@ -9,8 +10,8 @@
   <tbody class="pointable">
     <tr ng-mouseenter="hovering = true" 
         ng-mouseleave="hovering = false" 
-        ng-repeat="expense in expenses"
-        ng-click="clickRow(expense)">
+        ng-repeat="expense in $ctrl.expenses"
+        ng-click="$ctrl.clickRow(expense)">
       <td>{{expense.date | date:'shortDate'}}</td>
       <td>{{expense.payee}}</td>
       <td>{{expense.description}}</td>
@@ -20,7 +21,7 @@
           class="glyphicon glyphicon-remove" 
           ng-mouseenter="delhovering = true"
           ng-mouseleave="delhovering = false"
-          ng-click="deleteExpense(expense)"
+          ng-click="$ctrl.deleteExpense(expense)"
           ng-class="{'hover-delete':delhovering}"
           ></span></td>
     </tr>
