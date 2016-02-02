@@ -1,6 +1,6 @@
 angular.module('app').component('home', {
   
-  templateUrl: '/expenses/home.html',
+  templateUrl: '/home/home.html',
   controller: function(fbRef, expenseList) {
     
     var query = fbRef.getExpensesRef().orderByChild("date");

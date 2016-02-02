@@ -1,11 +1,9 @@
-<h1>Expense Tracker</h1>
-<h3>Recent Expenses:</h3>
+<h1>Expenses <small>{{$ctrl.expensesInOrder.getTotal() | currency}}</small></h1>
 
-<expense-list data="recentExpenses" select-expense="editExpense(expense)"></expense-list>
+<expense-list-display data="$ctrl.expensesInOrder" select-expense="$ctrl.editExpense(expense)"></expense-list-display>
 
 <edit-expense 
-    create-new-expense="createExpense(expenseData)" 
-    update-expense="updateExpense()"
-    edited-data="editedExpense"></edit-expense>
-
-
+    create-new-expense="$ctrl.createExpense(expenseData)" 
+    update-expense="$ctrl.updateExpense()"
+    edited-data="$ctrl.editedExpense"></edit-expense>
+    
