@@ -1,11 +1,11 @@
 angular.module('app').component('home', {
   
   templateUrl: '/expenses/home.html',
-  controller: function(fbRef, $firebaseArray) {
+  controller: function(fbRef, expenseList) {
     
     var query = fbRef.getExpensesRef().orderByChild("date");
 
-    this.expensesInOrder = $firebaseArray(query);
+    this.expensesInOrder = expenseList(query);
 
     this.createExpense = function(expenseData) {
       this.expensesInOrder.$add(expenseData);

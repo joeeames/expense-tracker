@@ -6,7 +6,6 @@ angular.module('app').component('editExpense', {
       editedExpense: '=editedData'
     },
     controller: function($scope, fbRef, $firebaseArray) {
-      // var that = this;
       
       var categoriesQuery = fbRef.getCategoriesRef().orderByChild("name");
       this.categories = $firebaseArray(categoriesQuery);
@@ -14,48 +13,49 @@ angular.module('app').component('editExpense', {
         this.selectedCategory = this.categories[0];
       }).bind(this))
 
+      // this works because we're using the default name. This is a deeper subject
       $scope.$watch('$ctrl.editedExpense', (function(newData) {
         if(!!newData) {
-          console.log(35)
           this.editing = true;
           this.amount = newData.amount;
           this.desc = newData.description;
           var date = new Date(newData.date);
-          this.date = (date.getMonth()+1) + '/' + date.getDate() + '/' + date.getFullYear();
+          this.date = date.toLocaleDateString();
+          // console.log('idx', this.categories.$indexFor(newData.category.id));
+          this.selectedCategory = this.categories[this.categories.$indexFor(newData.category.id)];
           this.payee = newData.payee;
         }
       }).bind(this))
 
       this.setDefaults = function() {
-        var now = new Date(Date.now())
-        this.date = (now.getMonth()+1) + '/' + now.getDate() + '/' + now.getFullYear();
-      }
-      this.setDefaults();
-
-      this.clearExpenseFields = function() {
         this.amount = '';
         this.desc = '';
         this.payee = '';
+        this.date = new Date(Date.now()).toLocaleDateString();
+        this.selectedCategory = this.categories.length > 0 ? this.categories[0] : undefined;
       }
+      this.setDefaults();
 
       this.create = function() {
         this.expenseData = {
-          amount: this.amount,
+          amount: parseFloat(this.amount),
           description: this.desc,
           payee: this.payee,
-          date: Date.parse(this.date)
+          category: { name: this.selectedCategory.name, id: this.selectedCategory.$id },
+          date: new Date(this.date).toJSON()
         }
-        this.clearExpenseFields();
+        this.setDefaults();
         this.createNewExpense({expenseData: this.expenseData});
       }
 
       this.save = function() {
-        this.editedExpense.amount = this.amount;
+        this.editedExpense.amount = parseFloat(this.amount);
         this.editedExpense.description = this.desc;
         this.editedExpense.payee = this.payee;
-        this.editedExpense.date = Date.parse(this.date);
+        this.editedExpense.date = new Date(this.date).toJSON()
+        this.editedExpense.category = { name: this.selectedCategory.name, id: this.selectedCategory.$id },
         this.updateExpense();
-        this.clearExpenseFields();
+        this.setDefaults();
         this.editing = false;
         this.editedExpense = null;
       }
@@ -63,7 +63,7 @@ angular.module('app').component('editExpense', {
       this.cancelEdit = function() {
         this.editing = false;
         this.editedExpense = null;
-        this.clearExpenseFields();
+        this.setDefaults();
       }
     }
   })

@@ -1,4 +1,4 @@
 * enable editing user preferences
-* add categories
-* add totals that show category subtotals - use extended firebase array
-    https://www.firebase.com/docs/web/libraries/angular/guide/extending-services.html
+  options: default category, display name, theme (colors, fonts?)
+* fix how hitting enter when editing creates a new record
+* change edit expense to pre-load categories

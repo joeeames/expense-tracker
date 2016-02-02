@@ -1,17 +1,16 @@
-angular.module('app').component('expenseList', {
-  bindings: {
-    expenses: '=data',
-    selectExpense: "&"
-  },
-  templateUrl: '/expenses/expenseList.html',
-  controller: function() {
-    this.deleteExpense = function(expense) {
-      this.expenses.$remove(expense);
+angular.module('app').factory('expenseList', function($firebaseArray) {
+  var ExpenseList = $firebaseArray.$extend({
+    getTotal: function() {
+      var total = 0;
+      // the array data is located in this.$list
+      angular.forEach(this.$list, function(rec) {
+        total += rec.amount;
+      });
+      return total;
     }
-
-    this.clickRow = function(expense) {
-      console.log(this.selectExpense);
-      this.selectExpense({expense: expense});
-    }
+  });
+  
+  return function(ref) {
+    return new ExpenseList(ref);
   }
 })
