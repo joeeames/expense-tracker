@@ -1,0 +1,18 @@
+<div ng-if="$ctrl.loaded" class="navbar navbar-fixed-top" 
+  ng-class="{'navbar-inverse': $ctrl.userPreferences.theme === 'dark'}">
+    <div class="container">
+      <div class="navbar-header"><a href="/" class="navbar-brand">Expenses</a></div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="#/">Home</a></li>
+          <li><a href="#/categories">Categories</a></li>
+          <li><a ng-href="#/userpref">Preferences</a></li>
+          <li><a ng-href="#/logout">Logout</a></li>
+        </ul>
+        
+        <ul class="nav navbar-nav navbar-right">
+          <li class="navbar-text">Welcome {{$ctrl.userPreferences.displayName}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>

@@ -3,15 +3,12 @@ angular.module('app').component('editExpense', {
     bindings: {
       createNewExpense: '&',
       updateExpense: '&',
-      editedExpense: '=editedData'
+      editedExpense: '=editedData',
+      categories: '='
     },
     controller: function($scope, fbRef, $firebaseArray) {
       
-      var categoriesQuery = fbRef.getCategoriesRef().orderByChild("name");
-      this.categories = $firebaseArray(categoriesQuery);
-      this.categories.$loaded().then((function(list) {
-        this.selectedCategory = this.categories[0];
-      }).bind(this))
+      this.selectedCategory = this.categories[0];
 
       // this works because we're using the default name. This is a deeper subject
       $scope.$watch('$ctrl.editedExpense', (function(newData) {
@@ -21,7 +18,6 @@ angular.module('app').component('editExpense', {
           this.desc = newData.description;
           var date = new Date(newData.date);
           this.date = date.toLocaleDateString();
-          // console.log('idx', this.categories.$indexFor(newData.category.id));
           this.selectedCategory = this.categories[this.categories.$indexFor(newData.category.id)];
           this.payee = newData.payee;
         }
@@ -31,7 +27,7 @@ angular.module('app').component('editExpense', {
         this.amount = '';
         this.desc = '';
         this.payee = '';
-        this.date = new Date(Date.now()).toLocaleDateString();
+        this.date = new Date('3/3/1985').toLocaleDateString();
         this.selectedCategory = this.categories.length > 0 ? this.categories[0] : undefined;
       }
       this.setDefaults();

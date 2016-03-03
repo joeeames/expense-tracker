@@ -11,27 +11,61 @@ app.run(function($rootScope, $location) {
 app.config(function($routeProvider) {
   $routeProvider
     .when('/home', {
-      template: '<home></home>',
+      template: '<home expenses-in-order="$resolve.expensesInOrder" categories="$resolve.categories"></home>',
       resolve: {
         "currentAuth": function(auth) {
           return auth.$requireAuth();
+        },
+        "expensesInOrder": function(fbRef, expenseList, auth) {
+          return auth.$requireAuth().then(function() {
+            var query = fbRef.getExpensesRef().orderByChild("date");
+            return expenseList(query).$loaded();
+          })
+        },
+        "categories": function(fbRef, $firebaseArray, auth) {
+          return auth.$requireAuth().then(function() {
+            var categoriesQuery = fbRef.getCategoriesRef().orderByChild("name");
+            return $firebaseArray(categoriesQuery).$loaded();
+          })
         }
       }
     })
     .when('/categories', {
-      template: '<category-list></category-list>',
+      template: '<category-list categories="$resolve.categories"></category-list>',
       resolve: {
         "currentAuth": function(auth) {
           return auth.$requireAuth();
+        },
+        "categories": function(fbRef, $firebaseArray, auth) {
+          return auth.$requireAuth().then(function() {
+            var categoriesQuery = fbRef.getCategoriesRef().orderByChild("name");
+            return $firebaseArray(categoriesQuery).$loaded();
+          })
         }
       }
     })
     .when('/login', {
-      // have to use the snake-case attribute name, but in the component, it's camel case
       template: '<login current-auth="$resolve.currentAuth"></login>',
       resolve: {
         currentAuth: function(auth) {
           return auth.$waitForAuth();
+        }
+      }
+    })
+    .when('/logout', {
+      template: '<logout></logout>'
+    })
+    .when('/userpref', {
+      template: '<edit-user-pref user-preferences="$resolve.userPreferences"></edit-user-pref>',
+      resolve: {
+        currentAuth: function(auth) {
+          return auth.$requireAuth();
+        },
+        userPreferences: function(fbRef, $firebaseObject, auth) {
+          return auth.$requireAuth().then(function() {
+            return new $firebaseObject(fbRef.getPreferencesRef()).$loaded()  
+          })
+          
         }
       }
     })

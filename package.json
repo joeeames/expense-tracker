@@ -4,8 +4,9 @@
   "description": "an expense tracker",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "http-server"
   },
   "author": "joe eames",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {}
 }

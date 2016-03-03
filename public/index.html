@@ -6,21 +6,10 @@
   <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
 <body class="container">
-  <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header"><a href="/" class="navbar-brand">Expenses</a></div>
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="#/">Home</a></li>
-          <li><a href="#/categories">Categories</a></li>
-          <li><a href="#/login">Login/Logout</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  
   <ng-view></ng-view>
-  <script type="text/javascript" src="https://code.angularjs.org/1.5.0-rc.2/angular.min.js"></script>
-  <script type="text/javascript" src="https://code.angularjs.org/1.5.0-rc.2/angular-route.min.js"></script>
+  <script type="text/javascript" src="https://code.angularjs.org/1.5.0/angular.min.js"></script>
+  <script type="text/javascript" src="https://code.angularjs.org/1.5.0/angular-route.min.js"></script>
   <script type="text/javascript" src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
   <script type="text/javascript" src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
   <script type="text/javascript" src="/app.js"></script>
@@ -31,7 +20,10 @@
   <script type="text/javascript" src="/expenses/expenseListDisplay.js"></script>
   <script type="text/javascript" src="/expenses/expenseList.js"></script>
   <script type="text/javascript" src="/security/login.js"></script>
+  <script type="text/javascript" src="/security/logout.js"></script>
   <script type="text/javascript" src="/fbUrl.js"></script>
   <script type="text/javascript" src="/categories/categoryList.js"></script>
+  <script type="text/javascript" src="/userPreferences/editUserPref.js"></script>
+  <script type="text/javascript" src="/nav/nav.js"></script>
 </body>
 </html>

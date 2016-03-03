@@ -1,4 +1,13 @@
+finish code refs
+*figure out how and when to add the categories, and the categories page First?
+*move data selection to resolve methods of the routes
+  *category list page
+  *categories in edit expense
+  *data for home page
+*options: display name, theme (colors, fonts?)  "#/userpref"
+* Upgrade to 1.5.0 release  
+* implement David's recommendation for firebase url's
 * enable editing user preferences
-  options: default category, display name, theme (colors, fonts?)
 * fix how hitting enter when editing creates a new record
 * change edit expense to pre-load categories
+* change home to pre-load expenses

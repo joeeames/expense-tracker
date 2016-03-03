@@ -1,0 +1,19 @@
+<nav></nav>
+<h1>User Preferences</h1>
+
+<form class="form-inline">
+  <label for="displayName">Display Name</label>
+  <input id="displayName" type="text" placeholder="Display Name" 
+    ng-model="$ctrl.userPreferences.displayName" class="form-control">
+  
+  <br /><br />
+  <label for="themeColor">Theme Color</label>
+  <select id="themeColor" ng-model="$ctrl.userPreferences.theme" 
+    ng-options="theme for theme in $ctrl.themes" 
+    class="form-control">
+  </select>
+  
+  <br /><br />
+  <button class="btn btn-primary btn-sm" ng-click="$ctrl.save()">Save</button>
+  <button class="btn btn-warning btn-sm" ng-click="$ctrl.cancelEdit()">Cancel</button>
+</form>

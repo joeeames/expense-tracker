@@ -1,13 +1,13 @@
-angular.module('app').factory('fbRef', function(auth, fbUrl) {
+angular.module('app').service('fbRef', function(auth, rootRef) {
   return {
-    getRootRef: function() {
-      return new Firebase(fbUrl + auth.$getAuth().uid);
-    },
     getExpensesRef: function() {
-      return new Firebase(fbUrl + "/expenses/" + auth.$getAuth().uid);
+      return rootRef.child("/expenses/").child(auth.$getAuth().uid);
     },
     getCategoriesRef: function() {
-      return new Firebase(fbUrl + "/categories/");
+      return rootRef.child("/categories/");
+    },
+    getPreferencesRef: function() {
+      return rootRef.child("/preferences/").child(auth.$getAuth().uid);
     }
   }
 

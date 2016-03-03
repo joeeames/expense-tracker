@@ -1,11 +1,11 @@
 angular.module('app').component('home', {
   
   templateUrl: '/home/home.html',
+  bindings: {
+    expensesInOrder: '=',
+    categories: '='
+  },
   controller: function(fbRef, expenseList) {
-    
-    var query = fbRef.getExpensesRef().orderByChild("date");
-
-    this.expensesInOrder = expenseList(query);
 
     this.createExpense = function(expenseData) {
       this.expensesInOrder.$add(expenseData);
