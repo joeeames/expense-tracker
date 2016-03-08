@@ -9,8 +9,5 @@
     ng-click="$ctrl.anonLogin()"
     ng-hide="$ctrl.loggedIn">Anonymous</button>
 
-<button style="btn btn-warning" ng-click="$ctrl.logout()"
-    ng-show="$ctrl.loggedIn">Logout</button>
-
 <br><br>
 <div class="alert alert-danger" ng-show="!!$ctrl.errorMessage">{{errorMessage}}</div>

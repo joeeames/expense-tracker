@@ -10,7 +10,8 @@ angular.module('app').component('editExpense', {
       
       this.selectedCategory = this.categories[0];
 
-      // this works because we're using the default name. This is a deeper subject
+      // this works because we're using the default name for the controller for the component
+      // which is $ctrl. This is a deeper subject
       $scope.$watch('$ctrl.editedExpense', (function(newData) {
         if(!!newData) {
           this.editing = true;
@@ -56,7 +57,7 @@ angular.module('app').component('editExpense', {
         this.editedExpense = null;
       }
 
-      this.cancelEdit = function() {
+      this.cancel = function() {
         this.editing = false;
         this.editedExpense = null;
         this.setDefaults();

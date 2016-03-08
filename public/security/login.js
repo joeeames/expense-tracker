@@ -6,11 +6,6 @@ angular.module('app').component('login', {
   controller: function(auth, $location) {
     this.loggedIn = !!this.currentAuth
 
-    this.logout = function() {
-      auth.$unauth();
-      this.loggedIn = false;
-    }
-
     this.anonLogin = function() {
       auth.$authAnonymously().then(function() {
         $location.path("/home");

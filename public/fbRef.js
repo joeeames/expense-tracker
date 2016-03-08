@@ -1,4 +1,4 @@
-angular.module('app').service('fbRef', function(auth, rootRef) {
+angular.module('app').factory('fbRef', function(auth, rootRef) {
   return {
     getExpensesRef: function() {
       return rootRef.child("/expenses/").child(auth.$getAuth().uid);
