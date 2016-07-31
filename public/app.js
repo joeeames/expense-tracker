@@ -14,16 +14,16 @@ app.config(function($routeProvider) {
       template: '<home expenses-in-order="$resolve.expensesInOrder" categories="$resolve.categories"></home>',
       resolve: {
         "currentAuth": function(auth) {
-          return auth.$requireAuth();
+          return auth.$requireSignIn();
         },
         "expensesInOrder": function(fbRef, expenseList, auth) {
-          return auth.$requireAuth().then(function() {
+          return auth.$requireSignIn().then(function() {
             var query = fbRef.getExpensesRef().orderByChild("date");
             return expenseList(query).$loaded();
           })
         },
         "categories": function(fbRef, $firebaseArray, auth) {
-          return auth.$requireAuth().then(function() {
+          return auth.$requireSignIn().then(function() {
             var categoriesQuery = fbRef.getCategoriesRef().orderByChild("name");
             return $firebaseArray(categoriesQuery).$loaded();
           })
@@ -34,10 +34,10 @@ app.config(function($routeProvider) {
       template: '<category-list categories="$resolve.categories"></category-list>',
       resolve: {
         "currentAuth": function(auth) {
-          return auth.$requireAuth();
+          return auth.$requireSignIn();
         },
         "categories": function(fbRef, $firebaseArray, auth) {
-          return auth.$requireAuth().then(function() {
+          return auth.$requireSignIn().then(function() {
             var categoriesQuery = fbRef.getCategoriesRef().orderByChild("name");
             return $firebaseArray(categoriesQuery).$loaded();
           })
@@ -48,7 +48,7 @@ app.config(function($routeProvider) {
       template: '<login current-auth="$resolve.currentAuth"></login>',
       resolve: {
         currentAuth: function(auth) {
-          return auth.$waitForAuth();
+          return auth.$waitForSignIn();
         }
       }
     })
@@ -59,10 +59,10 @@ app.config(function($routeProvider) {
       template: '<edit-user-pref user-preferences="$resolve.userPreferences"></edit-user-pref>',
       resolve: {
         currentAuth: function(auth) {
-          return auth.$requireAuth();
+          return auth.$requireSignIn();
         },
         userPreferences: function(fbRef, $firebaseObject, auth) {
-          return auth.$requireAuth().then(function() {
+          return auth.$requireSignIn().then(function() {
             return new $firebaseObject(fbRef.getPreferencesRef()).$loaded()  
           })
           

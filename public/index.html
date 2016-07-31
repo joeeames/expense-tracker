@@ -10,8 +10,19 @@
   <ng-view></ng-view>
   <script type="text/javascript" src="https://code.angularjs.org/1.5.0/angular.min.js"></script>
   <script type="text/javascript" src="https://code.angularjs.org/1.5.0/angular-route.min.js"></script>
-  <script type="text/javascript" src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
-  <script type="text/javascript" src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+  <script>
+    var config = {
+      apiKey: "AIzaSyAEQ8GRO7rmmTwY5rydgvPLKFN3IPquFvo",
+      authDomain: "je-expense-tracker2.firebaseapp.com",
+      databaseURL: "https://je-expense-tracker2.firebaseio.com",
+      storageBucket: "je-expense-tracker2.appspot.com",
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.min.js"></script>
+  
   <script type="text/javascript" src="/app.js"></script>
   <script type="text/javascript" src="/expenses/editExpense.js"></script>
   <script type="text/javascript" src="/fbRef.js"></script>

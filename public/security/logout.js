@@ -1,14 +1,10 @@
 angular.module('app').component('logout', {
-  bindings: {
-  },
-  controller: function(auth, $location) {
+  controller: function(auth, $location, $timeout) {
+    // auth.$unauth();
+    auth.$signOut()
 
-    this.$onInit = function() {
-      if(auth) {
-        auth.$unauth()
-      }
-      $location.path("/login");
-    }
-
+    $timeout(function() {
+      $location.path('/login');
+    }, 500);
   }
-});
+})
